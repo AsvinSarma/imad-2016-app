@@ -25,7 +25,8 @@ var articles = {
         content: `<p>This is the Second article of my webapp.
                  </p>`
     },
-    articlethree:{   title:'Article Three',
+    articlethree:{   
+        title:'Article Three',
         heading:'Article Third',
         date:'Oct 2 2016',
         content: `<p>This is the Third article of my webapp.
