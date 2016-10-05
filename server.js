@@ -40,7 +40,8 @@ function createTemplate(data){
     var date=data.date;
     var heading=data.heading;
     var content=data.content;
-    var htmlTemplate=`<html>
+    var htmlTemplate=`
+    <html>
         <head>
             <title>Article One</title>
         <meta name="viewport" content="width=device-width initial scale=1">
@@ -78,7 +79,7 @@ app.get('/', function (req, res) {
 
 app.get('/:articleName',function(req,res){
     // articleName == article-one
-    //articles[articleName]=={} content object for article one
+    //articles[articleName]== {} content object for article one
     var articleName =req.params.articleName;
      res.send(createTemplate(articles[articleName]));
 });
