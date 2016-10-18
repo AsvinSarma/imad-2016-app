@@ -6,7 +6,9 @@ var app=express();
 app.use(morgan('combined'));
 
 
-var  articleOne={
+var articles ={
+    
+    'article-one':{
         title:'Article One',
         heading:'Article One',
         date:'Oct 2 2016',
@@ -18,7 +20,22 @@ var  articleOne={
                 </p>
                  <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
                  </p>`
-    };
+    },
+    'article-two':{
+         title:'Article Two',
+        heading:'Article Two',
+        date:'Oct 5 2016',
+        content: ` 
+           <p>This is the second article of my webapp.</p>`
+    },
+    'article-three':{
+         title:'Article Three',
+        heading:'Article Three',
+        date:'Oct 8 2016',
+        content: ` 
+           <p>This is the third article of my webapp.</p>`
+    }
+};
    
 function createTemplate (data){
     var title=data.title;
@@ -61,16 +78,13 @@ app.get('/',function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req,res) {
- 
-  res.send(createTemplate(article-one));
+app.get('/:articleName', function(req,res) {
+ //articleName == article-one
+ //articles[articleName] == {} content object for article one
+ var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
-app.get('/article-two', function(req,res) {
-     res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-app.get('/article-three', function(req,res) {
-     res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
+
 app.get('/ui/style.css', function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
