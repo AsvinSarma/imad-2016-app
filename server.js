@@ -9,25 +9,44 @@ app.get('/',function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var content={
-    title:'Article One',
-    heading:'Article One',
-    date:'Oct 2 2016',
-    content:` 
-       <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
-            </p>
-          
-             <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
-            </p>
-             <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
-             </p>`
+var articles = {
+    'article-one':{
+        title:'Article One',
+        heading:'Article One',
+        date:'Oct 2 2016',
+        content:` 
+           <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
+                </p>
+              
+                 <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
+                </p>
+                 <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
+                 </p>`
+    },
+    'aticle-two':{
+        title:'Article Two',
+        heading:'Article Two',
+        date:'Oct 5 2016',
+        content:` 
+           <p>This is the Second article of my webapp.This is the Second article of my webapp.This is the Second article of my webapp.This is the Second article of my webapp.
+           </p>`
+    },
+    'article-three':{ 
+        title:'Article Three',
+        heading:'Article Three',
+        date:'Oct 8 2016',
+        content:` 
+           <p>This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.
+           </p>`
+        
+    }
 };
 function creatTemplate (data){
     var title=data.title;
     var heading=data.heading;
     var date=data.date;
     var content=data.content;
-}
+
 var htmlTemplate = `
 <html>
     <head>
@@ -60,8 +79,9 @@ var htmlTemplate = `
 }
 
 
-app.get('/article-one', function(req,res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+app.get('/:articleName', function(req,res) {
+  var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 app.get('/article-two', function(req,res) {
      res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
