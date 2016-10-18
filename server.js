@@ -6,8 +6,7 @@ var app=express();
 app.use(morgan('combined'));
 
 
-var articles = {
-    'article-one':{
+var  articleOne={
         title:'Article One',
         heading:'Article One',
         date:'Oct 2 2016',
@@ -19,25 +18,8 @@ var articles = {
                 </p>
                  <p>This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.This is the first article of my webapp.
                  </p>`
-    },
-    'aticle-two':{
-        title:'Article Two',
-        heading:'Article Two',
-        date:'Oct 5 2016',
-        content:` 
-           <p>This is the Second article of my webapp.This is the Second article of my webapp.This is the Second article of my webapp.This is the Second article of my webapp.
-           </p>`
-    },
-    'article-three':{ 
-        title:'Article Three',
-        heading:'Article Three',
-        date:'Oct 8 2016',
-        content:` 
-           <p>This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.This is the Third article of my webapp.
-           </p>`
-        
-    }
-};
+    };
+   
 function createTemplate (data){
     var title=data.title;
     var heading=data.heading;
