@@ -8,7 +8,7 @@ var config={
     database:'asvinsarma',
     host:'db.imad.hasura.io',
     port:'5432',
-    password:process.env.DB_PASSWORD,
+    password:process.env.DB_PASSWORD
 };
 var app=express();
 app.use(morgan('combined'));
@@ -91,7 +91,7 @@ app.get('/test-db', function (req,res) {
     pool.query('SELECT * FROM articlee', function(err,result){
         if(err){
             res.status(500).send(err.toString());
-        }else{
+        } else {
             res.send(JSON.stringify(result.rows));
         }
     });
@@ -101,11 +101,23 @@ app.get('/counter', function (req, res) {
     counter = counter+1;
     res.send(counter.toString());
 });
-app.get('/:articleName', function(req,res) {
+app.get('/articles/:articleName', function(req,res) {
  //articleName == article-one
  //articles[articleName] == {} content object for article one
- var articleName=req.params.articleName;
-  res.send(createTemplate(articles[articleName]));
+ 
+  pool.query("SELECT * FROM article WHERE title= " + req.params.articleName, function(err,result) {
+      if (err) {
+            res.status(500).send(err.toString());
+        } else {
+            if (result.rows.length === 0) {
+                res.status(404).send('Article not found');
+            } else {
+            
+                var articleData= result.rows[0];
+                res.send(createTemplate(articleData));
+            }
+        }
+  });
 });
 
 app.get('/ui/style.css', function(req,res){
