@@ -2,6 +2,9 @@ var express=require('express');
 var morgan=require('morgan');
 var path=require('path');
 var Pool=require('pg').pool;
+var crypto= require('crypto')
+var bodyParser= require('body-parser');
+
 
 
 var config = {
@@ -14,6 +17,7 @@ var config = {
 
 var app=express();
 app.use(morgan('combined'));
+
 
 
 var articles ={
@@ -86,6 +90,12 @@ app.get('/',function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+function hash(input){
+  //How  do we create a hash
+  var hashed= crypto.pbkdf2Sync(input, salt, 10000,512,'sha512');
+  return hashed.toSring('hex');
+
+}
 app.get('/articles/:articleName', function(req,res){
 
    
