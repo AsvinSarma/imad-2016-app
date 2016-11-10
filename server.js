@@ -4,7 +4,7 @@ var path=require('path');
 var Pool=require('pg').pool;
 
 
-var config= {
+var config = {
   user:'asvinsarma',
   databas:'asvinsarma',
   host:'http://db.imad.hasura-app.io',
