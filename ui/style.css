@@ -52,4 +52,6 @@ form{
      background-color:red;
      opacity:0.65;
      width:25%;
+     margin-left:auto;
+     margin-right:auto;
 }
