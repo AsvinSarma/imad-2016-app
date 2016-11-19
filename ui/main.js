@@ -6,7 +6,7 @@ var request =new XMLHttpRequest();
 request.onreadystatechange =function(){
     if(request.readyState ===XMLHttpRequest.Done){
         //take some action
-    if(request.status == 200){
+    if(request.status === 200){
         console.log('user logged in');
         alter('Logged in succesfully');
     }else if(request.status===403
