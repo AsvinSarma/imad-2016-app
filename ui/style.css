@@ -50,4 +50,6 @@ li a:hover{
 
 form{
      background-color:red;
+     opacity:0.65;
+     width:50px;
 }
