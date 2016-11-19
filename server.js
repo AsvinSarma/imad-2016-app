@@ -118,6 +118,31 @@ app.post('/create-user', function(req, res)  {
     });    
     
 });
+
+app.post('/login', function (req,res){
+     var username=req.body.username;
+    var password=req.body.password;
+   
+    pool.query('SELECT * from "user" username=$1', [username], function(err,result){
+            if (err){
+             res.status(500).send(err.toString());
+        }else{
+            if(result.rows.length ===0){
+                res.send(403).send('username/password is invalid');
+            }else{
+                //Match the password
+                var dbString =result.rows[0].password;
+                var salt = dbString.split('$')[2];
+                var hashedPassword = hash(password,salt); //Creating a hash based on the password submitted and the orginal salt
+                if(hashedPassword ===dbString) {
+                    res.send('credentials correct!');
+                }else{
+                res.send(403).send('username/password is invalid');
+            }
+        } 
+        }
+    });    
+});
 var pool = new Pool(config);
 app.get('/test-db',function(req,res)  {
     //make a select request
@@ -138,9 +163,7 @@ app.get('/counter',function(req,res){
     res.send(counter.toString());
 });
 
-app.get('/articles/:articleName', function(req,res){
-
-   
+app.get('/articles/:articleName', function(req,res) {
    pool.query("SELECT * FROM article WHERE title= '" + req.params.articleName+ "'", function(err,result) {
     if(err){
      res.status(500).send(err.toString());
@@ -151,8 +174,8 @@ app.get('/articles/:articleName', function(req,res){
          var articleData=result.rows[0];
      res.send(createTemplate(articleData));
     }
-}
-  });  
+
+  }  
 });
 app.get('/ui/style.css', function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'style.css'));
