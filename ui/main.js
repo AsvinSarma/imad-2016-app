@@ -24,7 +24,6 @@ request.onreadystatechange =function(){
     console.log(username);
     console.log(password);
     request.open('POST', 'http://asvinsarma.imad.hasura-app.io/login',true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    
+    request.setRequestHeader('Content-Type',  'application/json');
 };
 
