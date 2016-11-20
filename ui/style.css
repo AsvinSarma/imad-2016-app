@@ -56,7 +56,7 @@ form{
      margin-right:auto
 }
 input[type=submit]{
-    width:100px;
+    width:25%;
     background-color:orange;
     color:white;
     margin:8px 0;
