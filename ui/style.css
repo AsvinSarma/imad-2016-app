@@ -68,3 +68,11 @@ input[type=submit]{
 input[type=submit]:hover{
       background-color:#45a049;
 }
+parallax{
+    height:100%;
+    background-image:url('https://raw.githubusercontent.com/AsvinSarma/imad-2016-app/master/ui/california-road-1016.jpg');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+}
