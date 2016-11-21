@@ -8,7 +8,22 @@ submit.onclick =function(){
     request.onreadystatechange =function(){
         if(request.readyState ===XMLHttpRequest.DONE){
             //Take some action
-            if(request.status ===200)
-        }
-    }
+            if (request.status ===200){
+                
+              alert('Logged in Succyessfully');
+            }else if(request.status===403){
+                alert('Username/password is wrong');
+            }else if(request.status===500){
+                alert('Something went wrong');
+            }
 }
+//Not done yet
+};
+//Make the request
+var username=document.getElementById('username').value;
+var password=document.getElementById('password').value;
+console.log(username);
+console.log(password);
+request.open('POST','http://asvinsarma.imad.hasura-app.io/login',true);
+request.send(JSON.stringify({usrname:usename, password:password}));
+};
