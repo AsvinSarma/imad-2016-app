@@ -55,6 +55,10 @@ form{
      margin-left:auto;
      margin-right:auto
 }
+img{
+    height:200%;
+    width:200%;
+}
 input[type=submit]{
     height:25%;
     width:25%;
