@@ -22,7 +22,6 @@ body {
 
 ul{
     list-style-type:none;
-    position:fixed;
     padding:0;
     margin:0;
     background-color:#333;
