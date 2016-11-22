@@ -95,4 +95,13 @@ input[type=password]{
     border-radius: 4px;
     box-sizing: border-box;
 }
+sub_btn{
+     height:50px;
+    width:100px;
+    background-color:orange;
+    color:white;
+    margin:8px 100px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
 }
