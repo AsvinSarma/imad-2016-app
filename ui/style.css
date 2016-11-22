@@ -79,7 +79,7 @@ h6{
     
 }
 input[type=text]{
-      width: 30%;
+      width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -88,7 +88,7 @@ input[type=text]{
     box-sizing: border-box;
 }
 input[type=password]{
-     width: 30%;
+     width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
