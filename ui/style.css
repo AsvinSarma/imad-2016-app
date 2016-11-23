@@ -92,8 +92,7 @@ input[type=password]{
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-img_1{
+.img_1{
     width:25%;
     height:10%;
-}
 }
