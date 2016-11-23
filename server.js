@@ -98,7 +98,7 @@ app.get('/',function(req,res){
 function hash(input,salt){
   //How  do we create a hash
   var hashed= crypto.pbkdf2Sync(input, salt, 10000,512,'sha512');
-  return hashed.toString('hex');
+  return ["pbkdf2", "10000" hashed.toString('hex');
 
 }
 
@@ -124,15 +124,15 @@ app.post('/create-user', function(req, res)  {
     
 });
 
-app.post('/login', function(req,res){
-    var username=req.body.username;
-    var password=req.body.password;
+app.post('/login', function(req, res){
+    var username = req.body.username;
+    var password = req.body.password;
     
     pool.query('SELECT * FROM "user"  WHERE username= $1', [username], function (err,result){
-        if(err){
+        if (err) {
             res.status(500).send(err.toString());
         }else{
-            if(result.rows.length ===0){
+            if(result.rows.length === 0){
                 result.send(403).send('username/password  is invalid');
             }else{
                //Match the password
