@@ -25,5 +25,5 @@ var password=document.getElementById('password').value;
 console.log(username);
 console.log(password);
 request.open('POST','http://asvinsarma.imad.hasura-app.io/login',true);
-request.send(JSON.stringify({usrname:usename, password:password}));
+request.send(JSON.stringify({username:username, password:password}));
 };
