@@ -83,7 +83,7 @@ input[type=text]{
     border-radius: 4px;
     border: 1px solid #ccc;
      box-sizing: border-box;
-    
+     padding: 12px 20px;
 }
 input[type=password]{
      width: 25%;
@@ -91,6 +91,7 @@ input[type=password]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
+     padding: 12px 20px;
 }
 .img_1{
     width:100%;
