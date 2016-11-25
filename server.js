@@ -4,7 +4,7 @@ var path=require('path');
 var Pool=require('pg').Pool;
 var crypto= require('crypto');
 var bodyParser =require('body-parser');
-var session =require('express-session');
+var session = require('express-session');
 var config={
       user:'asvinsarma',
       database:'asvinsarma',
@@ -19,10 +19,9 @@ var app=express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(session({
-    secret:'someRandomSecretValue',
-    cookie:{maxAge: 1000 * 60 * 60 * 24 *30}
+    secret: 'someRandomSecretValue',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
-
 
 var articles ={
     'article-one':{
@@ -124,44 +123,58 @@ app.post('/create-user', function(req, res)  {
     
 });
 
-app.post('/login', function(req, res){
-    var username = req.body.username;
-    var password = req.body.password;
-    
-    pool.query('SELECT * FROM "user"  WHERE username= $1', [username], function (err,result){
-        if (err) {
-            res.status(500).send(err.toString());
-        }else{
-            if(result.rows.length === 0){
-                res.send(403).send('username/password  is invalid');
-            }else{
-               //Match the password
-               var dbString =result.rows[0].password;
-                var salt=dbString.split('$')[2];
-                var hashedPassword =hash(password, salt);
-                if(hashedPassword ===dbString){
+pp.post('/login', function (req, res) {
+   var username = req.body.username;
+   var password = req.body.password;
+   
+   pool.query('SELECT * FROM "user" WHERE username = $1', [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          if (result.rows.length === 0) {
+              res.status(403).send('username/password is invalid');
+          } else {
+              // Match the password
+              var dbString = result.rows[0].password;
+              var salt = dbString.split('$')[2];
+              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
+              if (hashedPassword === dbString) {
                     //Set the session
-             
+                         // Set the session
+                req.session.auth = {userId: result.rows[0].id};
+                // set cookie with a session id
+                // internally, on the server side, it maps the session id to an object
+                // { auth: {userId }}
+                
                     //set cookie
                     
-                    res.send('credentials correct');
-                }else{
-                    res.send(403).send('username/password is invalid');
-                }
-            }
-        }
-    });
+                   
+                res.send('credentials correct!');
+                
+              } else {
+                res.status(403).send('username/password is invalid');
+              }
+          }
+      }
+   });
 });
-app.get('/check-login', function(req,res){
-    if(req.session && req.session.auth.userId){
-        res.send('You are logged in:' + req.session.auth.userId.toString());
-    }else{
-        res.send('You are not logged in');
-    }
+app.get('/check-login', function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId) {
+       // Load the user object
+       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+              res.status(500).send(err.toString());
+           } else {
+              res.send(result.rows[0].username);    
+           }
+       });
+   } else {
+       res.status(400).send('You are not logged in');
+   }
 });
-app.get('/logout', function(req,res){
-   delete req.session.auth;
-  res.send('Logged out');
+app.get('/logout', function (req, res) {
+    delete req.session.auth;
+    res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
 });
 var pool = new Pool(config);
 app.get('/test-db',function(req,res)  {
@@ -177,7 +190,6 @@ app.get('/test-db',function(req,res)  {
     });
 });
 
-var counter=0;
 
 
 app.get('/articles/:articleName', function(req,res) {
