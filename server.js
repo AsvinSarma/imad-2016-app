@@ -4,7 +4,7 @@ var path=require('path');
 var Pool=require('pg').Pool;
 var crypto= require('crypto');
 var bodyParser =require('body-parser');
-var session = require('express-session');
+
 var config={
       user:'asvinsarma',
       database:'asvinsarma',
@@ -18,10 +18,6 @@ var config={
 var app=express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
-app.use(session({
-    secret: 'someRandomSecretValue',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
-}));
 
 var articles ={
     'article-one':{
@@ -141,7 +137,7 @@ pp.post('/login', function (req, res) {
               if (hashedPassword === dbString) {
                     //Set the session
                          // Set the session
-                req.session.auth = {userId: result.rows[0].id};
+               
                 // set cookie with a session id
                 // internally, on the server side, it maps the session id to an object
                 // { auth: {userId }}
