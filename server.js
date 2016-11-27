@@ -131,8 +131,7 @@ app.post('/login', function (req, res) {
    pool.query('SELECT * FROM "user" WHERE username = $1', [username], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
-      } else {
-          if (result.rows.length === 0) {
+      } else if (result.rows.length === 0) {
               res.status(403).send('username/password is invalid');
           } else {
               // Match the password
@@ -156,7 +155,7 @@ app.post('/login', function (req, res) {
                 res.status(403).send('username/password is invalid');
               }
           }
-      }
+      
    });
 });
 app.get('/check-login', function (req, res) {
