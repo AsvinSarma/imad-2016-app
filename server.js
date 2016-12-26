@@ -205,7 +205,7 @@ app.get('/articles/:articleName', function(req,res) {
     }
   });  
 });
-app.get('/ui/contact.html', function(req,res){
+app.get('/contact.html', function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'contact.html'));
 });
 
