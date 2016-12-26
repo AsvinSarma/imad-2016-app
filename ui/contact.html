@@ -6,99 +6,59 @@
      body {
      background-color:lightblue;
 }
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
-#edit-with-js-bin {
-  display: none !important;
+
+
+.biopic {
+-webkit-border-radius: 108px;
+-moz-border-radius:108px;
+border-radius: 108px;
+border: 8px solid #49789f;
+width: 200px;
+height: 200px;
+background-image: url(https://raw.githubusercontent.com/AsvinSarma/imad-2016-app/master/ui/about%20me.png);
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #262626;
-  font-family: 'Droid Sans Mono', sans-serif;
+.biopic span {
+-webkit-border-radius: 108px;
+-moz-border-radius:108px;
+border-radius: 108px;
+width: 200px;
+height: 200px;
+display: block;
+text-indent: -5000px;
+line-height: 200px;
+font-family: Arial, sans-serif;
+font-size: 2.5em;
+font-weight: bold;
+text-shadow: 0px 2px 8px #49789f;
+color: #fff;
+text-align: center;
+transition: all 0.5s;
+-webkit-transition: all 0.5s;
+-moz-transition: all 0.5s;
+-o-transition: all 0.5s;
+overflow: hidden;
 }
 
-h1 {
-  font-size: 3em;
+.biopic span:hover {
+background: rgba(73,120,159);
+background: rgba(73,120,159,0.5);
+text-indent: 0px;
+overflow: hidden;
+
 }
 
-h6 {
-  font-size: .9em;
-}
-
-.london {
-  background: url(http://www.onelifesuccess.net/wp-content/uploads/2014/04/London-skyline.jpg) no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: none;
-}
-
-.container {
-  width: 100%;
-  margin: auto;
-  padding: 10px 30px;
-}
-
-.header {
-  position: relative;
-  width: 100%;
-  text-align: left;
-  color: #F2F1EF;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-  display: block;
+img {
+-webkit-border-radius: 108px;
+-moz-border-radius:108px;
+border-radius: 108px;
 }
   </style>
- <script language="Javascript">
-     var SPY = function() {
-  function e(a, d, b) {
-    var c, f, g, h;
-    b == a.length ? k.animationComplete = !0 : (g = d.innerHTML, h = Math.floor(21 * Math.random() + 5), c = 32 === a[b] ? 32 : a[b] - h, f = setInterval(function() {
-      d.innerHTML = g + String.fromCharCode(c);
-      c == a[b] ? (clearInterval(f), c = 32, b++, setTimeout(function() {
-        e(a, d, b);
-      }, 10)) : c++;
-    }, 5));
-  }
-  var k = {};
-  return k = {animationComplete:!1, text:function(a) {
-    this.animationComplete = !1;
-    a = document.getElementById(a);
-    for (var d = a.innerHTML, b = [], c = 0;c < d.length;c++) {
-      b.push(d.charCodeAt(c));
-    }
-    a.innerHTML = "";
-    e(b, a, 0);
-  }};
-}();
-
-
-$( 'document' ).ready(function() {
-  
-  // Hide header
-  $( '.header' ).hide();
-  // Transition background
-  $( '.london' ).fadeIn( 1200 );
-  
-  
-  // Timeout for crypto text
-  setTimeout( function() { 
-    $( '.header' ).fadeIn( 'slow' );
-      SPY.text( 'op' );
-  }, 1000);
-  
-});
- </script>
+ 
   </head>
   <body>
-    <section class="london">
-  <div class="container">
-    <h1 id="op" class="header" >Aqtobe KTL 2011-2016</h1>
-  </div>
-  </section>
+   <div class="biopic">
+<span>Asvin</span>
+</div>
   </body>
 </html>
