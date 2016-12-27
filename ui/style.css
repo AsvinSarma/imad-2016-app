@@ -27,7 +27,7 @@ ul{
     margin:0;
     background-color:#333;
     overflow:hidden;
-    position:fixed;
+    
 }
 li {
     float:left;
