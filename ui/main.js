@@ -3,7 +3,7 @@
 
 //Submit username/password to login
 var submit = document.getElementById('submit_btn');
-submit.onclick =function(){
+submit.onClick =function(){
     //Create a request object
     var request =new XMLHttpRequest();
     
