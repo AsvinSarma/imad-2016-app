@@ -221,6 +221,9 @@ app.get('/ui/madi.png', function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
+app.get('/2017.html',function (req,res){
+   res.sendFile(patj.join(__dirname, 'ui','2017.html')) ;
+});
 app.get ('/services.html', function(req,res){
     res.sendFile(path.join(__dirname, 'ui', 'services.html'));
 });
